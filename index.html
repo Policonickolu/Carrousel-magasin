@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="resetstyle.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div class="colonne">
+
+		<header>
+			<a id="logo" href="/"></a>
+			<div id="titre">
+				<p>
+					le marché du frais
+				</p>
+			</div>
+			<div id="soustitre">
+				<p>
+					la fraîcheur à prix discount
+				</p>
+			</div>
+			<div id="legende">
+				<p>
+					fruits légumes crèmerie épicerie boucherie entretien
+				</p>
+			</div>
+		</header>
+
+		
+		<div id="bloc">
+			<div id="menu">
+				<ul>
+					<li class="actuel"><a href="/">Accueil</a></li>
+					<li><a href="/contact">Offres</a></li>
+					<li><a href="/contact">Contact</a></li>
+				</ul>
+			</div>
+			<div id="contenu">
+				<div id="contenu-principal">
+					<div id="slideshow">
+						<ul>
+							<li><img width="700" src="images/1.jpg"/></li>
+							<li><img width="700" src="images/2.jpg"/></li>
+							<li><img width="700" src="images/3.jpg"/></li>
+							<li><img width="700" src="images/4.jpg"/></li>
+							<li><img width="700" src="images/5.jpg"/></li>
+							<li><img width="700" src="images/1.jpg"/></li>
+							<li><img width="700" src="images/2.jpg"/></li>
+							<li><img width="700" src="images/3.jpg"/></li>
+							<li><img width="700" src="images/4.jpg"/></li>
+							<li><img width="700" src="images/5.jpg"/></li>
+						</ul>
+					</div>
+					<div>
+						<ul id="slideshow-boutons">
+							<li id="slideshow-prec"><a href="/"><</a></li>
+							<li id="slideshow-suiv"><a href="/">></a></li>
+						</ul>
+					</div>
+				</div>
+				<div id="cote-droit">
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div class="colonne">
+			!
+			!
+			!
+			!
+			!
+		</div>
+	</footer>
+
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script>
+		$(function(){
+			var v1 = ($("#slideshow ul > *").length) * 100 +"%";
+
+			$("#slideshow ul").width("500%");		
+
+
+			var a = function() {
+				$("#slideshow ul").animate({marginLeft:-700},1000,function(){  
+	            	$(this).css({marginLeft:0}).find("li:last").after($(this).find("li:first"));
+	        	})
+	        };
+
+
+			var b = function() {
+				$("#slideshow ul").css({marginLeft:-700}).find("li:first").before($("#slideshow ul").find("li:last"));
+				$("#slideshow ul").animate({marginLeft:0},1000);
+			};
+
+	        var i = setInterval(a, 3500);
+
+			$("#slideshow-suiv a").click(function(){
+					a();
+					clearInterval(i);
+					i = setInterval(a, 3500);
+				}
+			);
+			$("#slideshow-prec a").click(function(){
+					b();
+					clearInterval(i);
+					i = setInterval(a, 3500);
+				}
+			);
+
+			$("#slideshow").on("mouseover",	function(){
+					clearInterval(i);
+				}	
+			);
+
+			$("#slideshow").on("mouseout",	function(){
+					i = setInterval(a, 3500);
+				}	
+			);
+
+			$("#menu ul li").not(".actuel").on("mouseover",	function(){
+					$(this).css("background-color", "rgb(255, 255, 0)");
+				}	
+			);
+
+			$("#menu ul li").not(".actuel").on("mouseout",	function(){
+					$(this).css("background-color", "rgb(255, 204, 0)");
+				}	
+			);
+
+	  	});  
+	</script>
+</body>
+</html>
